@@ -20,6 +20,8 @@ from sklearn.svm import SVR
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_absolute_error
+
 
 from functions import NonLinearRegression, organize_data
 
@@ -49,4 +51,6 @@ plt.legend(loc=0)
 plt.xlabel('day')
 plt.ylabel('no of bike hires')
 plt.xlim(0,len(y))
-plt.show()
+#plt.show()
+
+print 'MAE', mean_absolute_error(y[m:], prediction[m:])
