@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression
 bikes_df = pd.read_csv('./data/bikes_subsampled.csv')
 
 # We select the variables temperature and bikes_count
-a = 10
+a = 28
 temperature = bikes_df['temperature'].values
 bikes_count = bikes_df['count'].values
 temperature_predict = np.expand_dims(a=np.linspace(-5, 40, 100), axis=1)
