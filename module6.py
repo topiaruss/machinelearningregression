@@ -46,3 +46,5 @@ coefs = np.array(coefs)
 plt.plot(lspace, coefs)
 plt.gca().set_xscale('log')
 plt.show()
+
+
