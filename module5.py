@@ -31,13 +31,24 @@ temp_train, temp_test, bikes_train, bikes_test = \
 #plt.scatter(temp_test, bikes_test, color = 'r')
 #plt.show()
 
-polynomial_regression = PolynomialRegression(degree=4)
-polynomial_regression.fit(temp_train, bikes_train)
-temperature_predict = np.expand_dims(np.linspace(-5,40,100),1)
-bikes_predict = polynomial_regression.predict(temperature_predict)
-plt.plot(temperature_predict, bikes_predict, linewidth=2)
-plt.scatter(temp_train, bikes_train, color='k')
-plt.scatter(temp_test, bikes_test, color='r')
-plt.ylim(0, 1400)
-plt.show()
+#polynomial_regression = PolynomialRegression(degree=4)
+#polynomial_regression.fit(temp_train, bikes_train)
+#temperature_predict = np.expand_dims(np.linspace(-5,40,100),1)
+#bikes_predict = polynomial_regression.predict(temperature_predict)
+#plt.plot(temperature_predict, bikes_predict, linewidth=2)
+#plt.scatter(temp_train, bikes_train, color='k')
+#plt.scatter(temp_test, bikes_test, color='r')
+#plt.ylim(0, 1400)
+#plt.show()
 
+df = pd.read_csv('./data/bikes.csv')
+temperature = df[['temperature']].values
+bikes = df['count'].values
+polynomial_regression = PolynomialRegression(degree=2)
+scores = -cross_val_score(polynomial_regression, temperature, \
+                          bikes, scoring = 'mean_absolute_error', cv=5)
+
+#plt.scatter(temperature, bikes, color='k')
+#plt.show()
+print scores
+print np.mean(scores)
