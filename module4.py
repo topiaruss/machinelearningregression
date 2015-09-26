@@ -43,16 +43,14 @@ print 'Bikes hired at 20C, and 60%: ',\
 print 'Bikes hired at 5, and 90%: ',\
     linear_regression.predict([5, 90])
 
+bikes_count = bikes_df['count'].values
+temperature = bikes_df[['temperature']].values
+polynomial_regression = PolynomialRegression(degree=2)
+polynomial_regression.fit(temperature, bikes_count)
+temperature_predict = np.expand_dims(np.linspace(-5, 40, 100), 1)
+bikes_count_predict = polynomial_regression.predict(temperature_predict)
 
-fig = plt.figure()
-ax = Axes3D(fig)
-temperature_predict = np.linspace(0, 35, 100)
-humidity_predict = np.linspace(20, 75, 100)
-
-model_plot_3d(ax, linear_regression, temperature_predict, humidity_predict)
-
-ax.scatter(X[:, 0], X[:, 1], y)
-ax.set_xlabel('temp')
-ax.set_ylabel('humidity')
-ax.set_zlabel('bikes')
+plt.scatter(temperature, bikes_count, color='k')
+plt.plot(temperature_predict, bikes_count_predict, linewidth=2)
+plt.legend(['Data', 'Degree 2'], loc=0)
 plt.show()
