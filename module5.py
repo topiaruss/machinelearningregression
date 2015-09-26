@@ -18,28 +18,6 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.cross_validation import train_test_split, cross_val_score
 from sklearn.metrics import mean_absolute_error
 
-bikes_df = pd.read_csv('./data/bikes_subsampled.csv')
-#bikes_df = pd.read_csv('./data/bikes.csv')
-temperature = bikes_df[['temperature']].values
-bikes_count = bikes_df['count'].values
-
-
-temp_train, temp_test, bikes_train, bikes_test = \
-            train_test_split(temperature, bikes_count, test_size=0.5)
-
-#plt.scatter(temp_train, bikes_train, color = 'k')
-#plt.scatter(temp_test, bikes_test, color = 'r')
-#plt.show()
-
-#polynomial_regression = PolynomialRegression(degree=4)
-#polynomial_regression.fit(temp_train, bikes_train)
-#temperature_predict = np.expand_dims(np.linspace(-5,40,100),1)
-#bikes_predict = polynomial_regression.predict(temperature_predict)
-#plt.plot(temperature_predict, bikes_predict, linewidth=2)
-#plt.scatter(temp_train, bikes_train, color='k')
-#plt.scatter(temp_test, bikes_test, color='r')
-#plt.ylim(0, 1400)
-#plt.show()
 
 df = pd.read_csv('./data/bikes.csv')
 temperature = df[['temperature']].values
@@ -54,8 +32,3 @@ for degree in range(1, 11):
 plt.ylabel('cross val score')
 plt.xlabel('poly degree')
 plt.show()
-
-#plt.scatter(temperature, bikes, color='k')
-#plt.show()
-print scores
-print np.mean(scores)
