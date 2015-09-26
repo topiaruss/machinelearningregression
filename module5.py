@@ -19,7 +19,7 @@ from sklearn.cross_validation import train_test_split, cross_val_score
 from sklearn.metrics import mean_absolute_error
 
 
-df = pd.read_csv('./data/bikes.csv')
+df = pd.read_csv('./data/bikes_subsampled.csv')
 temperature = df[['temperature']].values
 bikes = df['count'].values
 for degree in range(1, 11):
