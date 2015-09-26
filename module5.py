@@ -44,9 +44,16 @@ temp_train, temp_test, bikes_train, bikes_test = \
 df = pd.read_csv('./data/bikes.csv')
 temperature = df[['temperature']].values
 bikes = df['count'].values
-polynomial_regression = PolynomialRegression(degree=2)
-scores = -cross_val_score(polynomial_regression, temperature, \
+for degree in range(1, 11):
+
+    polynomial_regression = PolynomialRegression(degree=degree)
+    scores_cv = cross_val_score(polynomial_regression, temperature, \
                           bikes, scoring = 'mean_absolute_error', cv=5)
+    score_cv_m = -np.mean(scores_cv)
+    plt.plot(degree, score_cv_m, 'bo')
+plt.ylabel('cross val score')
+plt.xlabel('poly degree')
+plt.show()
 
 #plt.scatter(temperature, bikes, color='k')
 #plt.show()
