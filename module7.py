@@ -35,22 +35,35 @@ k = 30
 h = 1
 X, y = organize_data(bikes, k, h)
 
-plt.plot(y, label='demand', color='k')
-plt.legend(loc=0)
-plt.xlabel('Days')
-plt.ylabel('No. of Bikes Hired')
+#plt.plot(y, label='demand', color='k')
+#plt.legend(loc=0)
+#plt.xlabel('Days')
+#plt.ylabel('No. of Bikes Hired')
 
 m =100
 regressor = LinearRegression()
 regressor.fit(X[:m], y[:m])
 prediction = regressor.predict(X)
-plt.plot(y, label='true demand', color='k')
-plt.plot(prediction, '-', color='b', label='Predition')
-plt.plot(y[:m], color='r', label='train data')
-plt.legend(loc=0)
-plt.xlabel('day')
-plt.ylabel('no of bike hires')
-plt.xlim(0,len(y))
+#plt.plot(y, label='true demand', color='k')
+#plt.plot(prediction, '-', color='b', label='Predition')
+#plt.plot(y[:m], color='r', label='train data')
+#plt.legend(loc=0)
+#plt.xlabel('day')
+#plt.ylabel('no of bike hires')
+#plt.xlim(0,len(y))
 #plt.show()
 
 print 'MAE', mean_absolute_error(y[m:], prediction[m:])
+
+res = []
+for k in range(1, 40):
+    X,y = organize_data(bikes, k, h)
+    regressor.fit(X[:m], y[:m])
+    yy = regressor.predict(X[m:])
+    res.append(mean_absolute_error(y[m:], yy))
+
+
+plt.plot(res)
+plt.ylabel('MAE')
+plt.xlabel('No. Of lags')
+plt.show()
