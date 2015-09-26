@@ -20,7 +20,7 @@ from functions import PolynomialRegression, model_plot_3d
 
 
 bikes_df = pd.read_csv('./data/bikes_subsampled.csv')
-#bikes_df = pd.read_csv('./data/bikes.csv')
+bikes_df = pd.read_csv('./data/bikes.csv')
 
 # Learning activity 1: Fit a model of 2 variables and plot the model
 
@@ -57,7 +57,7 @@ plt.legend(['Data', 'Degree 2'], loc=0)
 #plt.show()
 
 
-degrees = range(1, 15)
+degrees = range(1, 100)
 residual = []
 for degree in degrees:
     residual.append(polynomial_residual(degree, temperature, bikes_count))
