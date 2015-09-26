@@ -19,9 +19,18 @@ from functions import PolynomialRegression, model_plot_3d
 
 
 bikes_df = pd.read_csv('./data/bikes_subsampled.csv')
+bikes_df = pd.read_csv('./data/bikes.csv')
 
 # Learning activity 1: Fit a model of 2 variables and plot the model
 
 features = ['temperature','humidity']
 X = bikes_df[features].values
 y = bikes_df['count'].values
+
+fig = plt.figure()
+ax = Axes3D(fig)
+ax.scatter(X[:, 0], X[:, 1], y)
+ax.set_xlabel('temp')
+ax.set_ylabel('humidity')
+ax.set_zlabel('bikes')
+plt.show()

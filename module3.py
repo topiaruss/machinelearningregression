@@ -10,7 +10,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 
 
-bikes_df = pd.read_csv('./data/bikes_subsampled.csv')
+bikes_df = pd.read_csv('./data/bikes.csv')
 
 # We select the variables temperature and bikes_count
 
